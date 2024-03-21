@@ -1,0 +1,7 @@
+@import '../src/common/colors.scss';
+
+.card-item {
+  background-color: $color-secondary;
+  cursor: pointer;
+  transition: all 0.4s;
+}
