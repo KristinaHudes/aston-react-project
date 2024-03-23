@@ -5,6 +5,7 @@ import { apiKey } from '../../common/apis/movieApiKey';
 
 const initialState = {
   movies: {},
+  selectedMovie: {},
   isLoading: true,
 };
 
@@ -18,12 +19,23 @@ export const fetchAsyncMovies = createAsyncThunk(
   },
 );
 
+export const fetchAsyncSingleMovie = createAsyncThunk(
+  'movies/fetchAsyncSingleMovie',
+  async (id) => {
+    const res = await movieApi.get(`?apiKey=${apiKey}&i=${id}&Plot=full`);
+    return res.data;
+  },
+);
+
 export const movieSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
     addMovies: (state, { payload }) => {
       state.movies = payload;
+    },
+    removeSelectedMovie: (state) => {
+      state.selectedMovie = {};
     },
   },
 
@@ -38,9 +50,15 @@ export const movieSlice = createSlice({
       })
       .addCase(fetchAsyncMovies.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(fetchAsyncSingleMovie.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.selectedMovie = payload;
       });
   },
 });
 
 export const getAllMovies = (state) => state.movies.movies;
 export const getSelectedMovie = (state) => state.movies.selectedMovie;
+export const { addMovies } = movieSlice.actions;
+export const { removeSelectedMovie } = movieSlice.actions;
