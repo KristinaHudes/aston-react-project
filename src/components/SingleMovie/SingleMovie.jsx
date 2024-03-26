@@ -1,18 +1,27 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import {
-  fetchAsyncSingleMovie,
-  getSelectedMovie,
-  removeSelectedMovie,
-} from '../../features/movies/movieSlice';
+import { useGetSingleMovieQuery } from '../../api/movieApi';
 import './SingleMovie.scss';
 
 export const SingleMovie = () => {
   const { imdbID } = useParams();
-  const dispatch = useDispatch();
-  const data = useSelector(getSelectedMovie);
+  const { data, error, isLoading, isSuccess } = useGetSingleMovieQuery(imdbID);
+
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error">
+        Something went wrong: {error.message || 'Unknown Error :('}
+      </div>
+    );
+  }
 
   const {
     Title: title,
@@ -25,19 +34,9 @@ export const SingleMovie = () => {
     Poster: poster,
   } = data;
 
-  useEffect(() => {
-    dispatch(fetchAsyncSingleMovie(imdbID));
-
-    return () => {
-      dispatch(removeSelectedMovie());
-    };
-  }, [dispatch, imdbID]);
-
   return (
     <div className="movie-section">
-      {Object.keys(data).length === 0 ? (
-        <div>Loading...</div>
-      ) : (
+      {isSuccess && (
         <>
           <div className="section-left">
             <div className="movie-title">{title}</div>

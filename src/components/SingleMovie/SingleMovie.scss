@@ -1,8 +1,11 @@
-@import '../src/common/colors.scss';
+@import '../../main.scss';
 
 .movie-section {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-evenly;
+  gap: 50px;
   padding: 40px 0;
   font-weight: 400;
 }
@@ -30,8 +33,4 @@
       color: $font-secondary;
     }
   }
-}
-
-.section-right {
-  margin-left: 30px;
 }

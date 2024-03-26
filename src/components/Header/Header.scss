@@ -1,4 +1,4 @@
-@import '../../common/colors.scss';
+@import '../../main.scss';
 
 .header {
   background-color: $color-tertiary;
@@ -11,7 +11,7 @@
 
 .logo {
   color: $font-primary;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 600;
 }
 
@@ -30,7 +30,7 @@
   justify-content: center;
 
   form {
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: center;
 
