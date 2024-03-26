@@ -17,6 +17,7 @@ export const Header = () => {
           </button>
         </form>
       </div>
+      <div className="faves">Faves / History</div>
       <div className="user-image">
         <img src={user} alt="user" />
       </div>

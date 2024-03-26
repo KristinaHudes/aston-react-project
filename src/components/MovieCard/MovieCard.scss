@@ -1,4 +1,4 @@
-@import '../src/common/colors.scss';
+@import '../../main.scss';
 
 .card-item {
   background-color: $color-secondary;
@@ -13,7 +13,7 @@
 }
 
 .card-top {
-  height: 300px;
+  height: 320px;
   object-fit: cover;
 
   img {
@@ -23,15 +23,29 @@
 }
 
 .card-bottom {
+  position: relative;
   padding: 20px;
+
+  span {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 25px;
+    color: orangered;
+  }
 }
 
 .card-info {
   color: $font-primary;
 
   h4 {
+    height: 70px;
     font-size: 22px;
     font-weight: 400;
     margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0;
   }
 }
