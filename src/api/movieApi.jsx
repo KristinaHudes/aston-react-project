@@ -7,11 +7,27 @@ export const movieApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://www.omdbapi.com/' }),
   endpoints: (builder) => ({
     getMovies: builder.query({
-      query: (searchTerm = 'american') =>
-        `?apiKey=${apiKey}&s=${searchTerm}&type=series`,
+      query: (searchTerm) => ({
+        url: '/',
+        params: {
+          s: searchTerm,
+          apikey: apiKey,
+          plot: 'full',
+          type: 'series',
+        },
+      }),
+      transformResponse: (response) => response.Search,
     }),
+
     getSingleMovie: builder.query({
-      query: (id) => `?apiKey=${apiKey}&i=${id}&Plot=full`,
+      query: (id) => ({
+        url: '/',
+        params: {
+          i: id,
+          apikey: apiKey,
+          plot: 'full',
+        },
+      }),
     }),
   }),
 });

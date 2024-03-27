@@ -23,16 +23,7 @@
 }
 
 .card-bottom {
-  position: relative;
   padding: 20px;
-
-  span {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    font-size: 25px;
-    color: orangered;
-  }
 }
 
 .card-info {
@@ -45,7 +36,25 @@
     margin-bottom: 10px;
   }
 
-  p {
-    margin: 0;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    button {
+      width: 70px;
+      height: 30px;
+      font-size: 16px;
+      background-color: $font-primary;
+      border: none;
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: darken($font-primary, $amount: 10);
+      }
+    }
   }
 }
