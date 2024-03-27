@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { Home } from '../components/Home/Home';
 import { SingleMovie } from '../components/SingleMovie/SingleMovie';
+import { MainPage } from '../pages/MainPage';
 
 export const Router = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/movie/:imdbID" element={<SingleMovie />} />
       </Routes>
     </div>
